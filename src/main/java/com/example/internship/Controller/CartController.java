@@ -2,6 +2,9 @@ package com.example.internship.Controller;
 
 import com.example.internship.Model.Cart;
 import com.example.internship.Model.Menu;
+import com.example.internship.Model.Orders;
+import com.example.internship.Repository.OrderRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
@@ -17,13 +20,15 @@ import java.util.Map;
 public class CartController {
 
     private final Cart cart;
+    private final OrderRepository orderRepository;
 
     // Injecting Stripe Secret Key from application.properties
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
-    public CartController() {
+    public CartController(OrderRepository orderRepository) {
         this.cart = new Cart();
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping("/cart")
@@ -65,36 +70,40 @@ public class CartController {
         return "redirect:/cart"; // Redirect to cart after removing item
     }
 
-    /**
-     * Endpoint to handle Stripe Payment
-     */
+   
     @PostMapping("/process-payment")
     @ResponseBody
     public Map<String, Object> processPayment(@RequestParam("paymentMethodId") String paymentMethodId) {
         Map<String, Object> response = new HashMap<>();
         try {
-            // Calculate the total price in cents (Stripe requires the amount in the smallest currency unit)
+            // Set Stripe API Key
+            com.stripe.Stripe.apiKey = stripeSecretKey;
+
             long amount = (long) (cart.getTotalPrice() * 100);
 
-            // Create a PaymentIntent
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                     .setAmount(amount)
                     .setCurrency("inr")
                     .setPaymentMethod(paymentMethodId)
-                    .setConfirm(true) // Automatically confirm the payment
+                    .setConfirm(true)
                     .build();
 
-            // Set the secret key for Stripe API
-            com.stripe.Stripe.apiKey = stripeSecretKey;
-
-            // Create the PaymentIntent
             PaymentIntent paymentIntent = PaymentIntent.create(params);
 
-            // Payment was successful
+            // Convert cart items to JSON string
+            ObjectMapper objectMapper = new ObjectMapper();
+            String orderDetailsJson = objectMapper.writeValueAsString(cart.getMenuItems());
+
+            // Save order in database
+            Orders order = new Orders(paymentIntent.getId(), cart.getTotalPrice(), orderDetailsJson);
+            orderRepository.save(order);
+
+            // Clear the cart after successful payment
+            cart.clearCart();
+
             response.put("status", "success");
             response.put("paymentIntentId", paymentIntent.getId());
-        } catch (StripeException e) {
-            // Handle payment failure
+        } catch (StripeException | com.fasterxml.jackson.core.JsonProcessingException e) {
             response.put("status", "failure");
             response.put("error", e.getMessage());
         }
