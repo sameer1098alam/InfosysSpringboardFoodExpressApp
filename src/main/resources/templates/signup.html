@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | FoodExpress</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Create an Account</h1>
+    <form action="/register" method="post">
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        
+        <label>Confirm Password:</label>
+        <input type="password" name="confirmPassword" required>
+        
+        <button type="submit">Sign Up</button>
+    </form>
+    
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    <p th:if="${message}" th:text="${message}" style="color: green;"></p>
+    <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+</div>
+
+</body>
+</html>

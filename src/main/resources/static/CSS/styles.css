@@ -1,0 +1,705 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .menu a {
+    margin: 0 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar .menu button {
+    background-color: #009963;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar .menu button:hover {
+    background-color: #007c4f;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: url('/images/img1.png') no-repeat center center/cover;
+    height: 500px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.hero-content h3 {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.hero-content .order-button {
+    background-color: #009963;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-content .order-button:hover {
+    background-color: #007c4f;
+}
+
+/* Why Choose Us */
+.why-choose-us {
+    text-align: center;
+    padding: 50px;
+}
+
+.why-choose-us h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    max-width: 250px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in-out;
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #009963;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Meal Images */
+.meal-images {
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.meal-images h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: left;
+}
+
+.meal-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.meal-card {
+    text-align: center;
+    width: 220px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meal-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.meal-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.meal-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.meal-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Footer */
+.footer {
+    background-color: #0F172A;
+    color: #fff;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-column a {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-signup p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.footer-signup form {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-signup input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.footer-signup button {
+    background-color: #009963;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-signup button:hover {
+    background-color: #007c4f;
+}
+
+/* Login and Signup Styles */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-container h1 {
+    margin-bottom: 20px;
+    color: #009963;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-container label {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+.auth-container input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    font-size: 14px;
+}
+
+.auth-container button {
+    background-color: #009963;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-container button:hover {
+    background-color: #007c4f;
+}
+
+.auth-container p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+}
+
+.auth-container a {
+    color: #009963;
+    text-decoration: none;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+/*profile.html*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.profile-icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.profile-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.message {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.message .success {
+    color: #4CAF50;
+}
+
+.message .error {
+    color: #f44336;
+}
+
+.profile-form {
+    display: grid;
+    gap: 15px;
+    align-items: center;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"] {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.profile-form input[type="submit"] {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.profile-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.deactivate-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.deactivate-btn:hover {
+    background-color: #e53935;body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+}
+
+.admin-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.header {
+    background-color: #1b5e20;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+}
+
+nav a {
+    margin-left: 30px;
+    color: #c8e6c9;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #66bb6a;
+}
+
+.content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.dashboard-welcome h2 {
+    color: #34495e;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.dashboard-welcome p {
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.action-box {
+    background-color: white;
+    width: 300px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.action-box:hover {
+    transform: translateY(-10px);
+}
+
+.action-box h3 {
+    color: #1b5e20;
+    margin-bottom: 15px;
+}
+
+.action-box p {
+    color: #7f8c8d;
+    line-height: 1.5em;
+}
+
+.action-box a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.action-box a:hover {
+    background-color: #1b5e20;
+}
+
+.footer {
+    margin-top: 60px;
+    color: #95a5a6;
+    font-size: 0.9em;
+}
+    
+}
+
+@media (max-width: 600px) {
+    .profile-form input[type="submit"],
+    .deactivate-btn {
+        width: 100%;
+    }
+}
+.btn-danger {
+    /* Danger button styling */
+    background-color: red; /* Example */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* admin-dashboard.html*/
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+}
+
+.admin-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.header {
+    background-color: #1b5e20;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+}
+
+nav a {
+    margin-left: 30px;
+    color: #c8e6c9;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #66bb6a;
+}
+
+.content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.dashboard-welcome h2 {
+    color: #34495e;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.dashboard-welcome p {
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.action-box {
+    background-color: white;
+    width: 300px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.action-box:hover {
+    transform: translateY(-10px);
+}
+
+.action-box h3 {
+    color: #1b5e20;
+    margin-bottom: 15px;
+}
+
+.action-box p {
+    color: #7f8c8d;
+    line-height: 1.5em;
+}
+
+.action-box a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.action-box a:hover {
+    background-color: #1b5e20;
+}
+
+
+
+

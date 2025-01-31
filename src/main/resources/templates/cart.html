@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item, iterStat : ${cart.menuItems}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td>
+                        <form th:action="@{/update-quantity}" method="post">
+                            <input type="hidden" name="index" th:value="${iterStat.index}" />
+                            <input type="number" name="quantity" th:value="${cart.quantities[iterStat.index]}" min="1" />
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td th:text="${item.price * cart.quantities[iterStat.index]}"></td>
+                    <td>
+                        <form th:action="@{/remove-from-cart}" method="post">
+                            <input type="hidden" name="index" th:value="${iterStat.index}" />
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Total Price: ₹<span th:text="${totalPrice}"></span></h3>
+    </div>
+    
+    <!-- Stripe Checkout -->
+    <h2>Proceed to Payment</h2>
+    <form id="payment-form">
+        <div id="card-element">
+            <!-- Stripe Element will be injected here -->
+        </div>
+        <button id="submit-button" type="submit">Pay ₹<span th:text="${totalPrice}"></span></button>
+    </form>
+    
+    <script>
+        const stripe = Stripe('pk_test_51QkOI2FJFTL1LKsVGmCkN8ReIBEmsASIVqkeS75Iq6rxyUIQOTFhnf7jWIRfjOlRMDSyJLDIcukwAemZfmHW9kCQ00QS5eBN40'); // Set your publishable key here
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const { paymentMethod, error } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: card,
+            });
+
+            if (error) {
+                alert(error.message);
+            } else {
+                // Send paymentMethod.id to your backend for payment processing
+                const response = await fetch('/process-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        paymentMethodId: paymentMethod.id,
+                    }),
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert('Payment successful!');
+                    window.location.href = '/thank-you'; // Redirect to a success page
+                } else {
+                    alert('Payment failed: ' + result.error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Main Layout */
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 0.5rem;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Menu List */
+#menuList div {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+}
+
+#menuList h3 {
+  margin: 0;
+  color: #4CAF50;
+}
+
+#menuList p {
+  margin: 0.5rem 0;
+}
+
+#menuList button {
+  margin-right: 0.5rem;
+  background-color: #c8c2c2;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+#menuList button:hover {
+  background-color: #beb0b0;
+}

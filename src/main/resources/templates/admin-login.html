@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login | FoodExpress</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Admin Login</h1>
+    <form action="/admin-authenticate" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    <p>Don't have admin access? <a href="/">Back to Home</a></p>
+</div>
+
+</body>
+</html>

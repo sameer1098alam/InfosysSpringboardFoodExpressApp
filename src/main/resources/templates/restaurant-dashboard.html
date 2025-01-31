@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" th:href="@{/CSS/menu.css}">
+</head>
+<body>
+    <header>
+        <h1>Restaurant Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="menu-management">
+            <h2>Menu Management</h2>
+            <button onclick="window.location.href='/menu'">Manage Menu</button>
+        </section>
+
+        <!-- Placeholder for other sections like Orders and Analytics -->
+        <section id="orders">
+            <h2>Orders</h2>
+            <p>Order management functionality will go here.</p>
+        </section>
+        <section id="analytics">
+            <h2>Analytics</h2>
+            <p>Analytics functionality will go here.</p>
+        </section>
+    </main>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

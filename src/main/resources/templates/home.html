@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+     <meta charset="UTF-8">
+     <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/scripts.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+ <style>
+      body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #009963;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .header nav a:hover {
+            color: #009963;
+        }
+
+        
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            font-size: 25px;
+            margin-left: 50px;
+            color: white;
+            cursor: pointer;
+        }
+
+        
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background-image: url('/images/img2.jpg');
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            height: 600px;
+            position: relative;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-section .content {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .hero-section h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .hero-section button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        
+        .food-gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .food-gallery h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .food-carousel-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-carousel {
+            display: flex;
+            gap: 40px; 
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px;
+        }
+
+        .food-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .food-carousel::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .food-carousel::-webkit-scrollbar-track {
+            background: #f9f9f9;
+        }
+
+        .food-item {
+            flex: 0 0 auto;
+            text-align: center;
+            width: 250px; 
+        }
+
+        .food-item img {
+            width: 250px; 
+            height: 250px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+        }
+
+        .food-item p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+       
+        .individual-food {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .food-card {
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .food-card h3 {
+            font-size: 18px;
+            margin: 15px 0 5px;
+        }
+
+        .food-card p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .food-card .stars {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .food-card .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .food-card .quantity {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .food-card button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .food-card button:hover {
+            background-color: #218838;
+        }
+        
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.cart-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+     
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>FoodExpress</h1>
+    <nav>
+        <a href="#">Home</a>
+       
+    </nav>
+ <div class="header-icons">
+    <div class="cart-icon" onclick="redirectToCart()">
+        <img src="/images/cart.png" alt="Cart">
+    </div>
+
+
+        <div class="profile-icon" onclick="toggleSidebar()">
+            <img src="/images/profile-icon.png" alt="Profile">
+        </div>
+    </div>
+</header>
+<script>
+    function redirectToCart() {
+        window.location.href = '/cart'; // Redirect to the /cart endpoint
+    }
+</script>
+
+<div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+     <a href="/profile" onclick="closeSidebar()">Profile</a>
+    <a href="#">Orders</a>
+    <a href="#">Settings</a>
+    <a href="#">Log Out</a>
+</div>
+
+<section class="hero-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Order Your Favorite Food</h1>
+        <p>Get it delivered fresh and fast!</p>
+        <form>
+            <input type="text" placeholder="Search for restaurants or dishes">
+            <button>Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="food-gallery">
+    <h2>What's on your mind?</h2>
+    <div class="food-carousel-wrapper">
+        <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#8249;</button>
+        <div class="food-carousel">
+            <div class="food-item">
+                <img src="/images/Briyani.jpg" alt="Biryani">
+                <p>Biryani</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Noodles.jpg" alt="Noodles">
+                <p>Noodles</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Kebabs.jpg" alt="Kebabs">
+                <p>Kebabs</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Gulab Jamun.jpeg" alt="Gulab Jamun">
+                <p>Gulab Jamun</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Pure Veg.jpg" alt="Pure Veg">
+                <p>Pure Veg</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Paratha.jpg" alt="Paratha">
+                <p>Paratha</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Chinese.jpg" alt="Chinese">
+                <p>Chinese</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/brownie.jpg" alt="Brownie">
+                <p>Brownie</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Ice coffee.jpg" alt="Ice Coffee">
+                <p>Ice Coffee</p>
+            </div>
+            <div class="food-item">
+                <img src="/images/Cupcake.jpg" alt="Cupcake">
+                <p>Cupcake</p>
+            </div>
+        </div>
+        <button class="carousel-btn next" onclick="scrollCarousel(1)">&#8250;</button>
+    </div>
+</section>
+<section class="individual-food">
+ <div class="food-card">
+    <img src="/images/pizza.jpg" alt="Pizza">
+    <h3>Italian Pizza</h3>
+    <p>₹300.00</p>
+    <div class="stars">★★★★★</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Italian Pizza">
+            <input type="hidden" name="price" value="300.00">
+            <input type="hidden" name="description" value="A delicious Italian pizza with fresh ingredients">
+            <input type="hidden" name="name" value="Italian Pizza">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/shrimps.jpg" alt="Shrimps">
+    <h3>Staghetti with Shrimps</h3>
+    <p>₹400.00</p>
+    <div class="stars">★★★★☆</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Staghetti with Shrimps">
+            <input type="hidden" name="price" value="400.00">
+            <input type="hidden" name="description" value="A delightful pasta dish with shrimps">
+            <input type="hidden" name="name" value="Staghetti with Shrimps">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/chowmein.jpg" alt="Chowmein">
+    <h3>Mixed Chowmein</h3>
+    <p>₹200.00</p>
+    <div class="stars">★★★☆☆</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Mixed Chowmein">
+            <input type="hidden" name="price" value="200.00">
+            <input type="hidden" name="description" value="Stir-fried chowmein with a mix of vegetables and spices">
+            <input type="hidden" name="name" value="Mixed Chowmein">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/chickencurry.jpg" alt="Chicken Curry">
+    <h3>Chicken Curry</h3>
+    <p>₹350.00</p>
+    <div class="stars">★★★★★</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Chicken Curry">
+            <input type="hidden" name="price" value="350.00">
+            <input type="hidden" name="description" value="A rich and flavorful chicken curry">
+            <input type="hidden" name="name" value="Chicken Curry">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/sandwich.jpg" alt="Sandwich">
+    <h3>Grilled Sandwich</h3>
+    <p>₹150.00</p>
+    <div class="stars">★★★★☆</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Grilled Sandwich">
+            <input type="hidden" name="price" value="150.00">
+            <input type="hidden" name="description" value="A crispy grilled sandwich with fresh vegetables">
+            <input type="hidden" name="name" value="Grilled Sandwich">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/desert.jpg" alt="Dessert">
+    <h3>Chocolate Dessert</h3>
+    <p>₹250.00</p>
+    <div class="stars">★★★★★</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Chocolate Dessert">
+            <input type="hidden" name="price" value="250.00">
+            <input type="hidden" name="description" value="A delicious chocolate dessert">
+            <input type="hidden" name="name" value="Chocolate Dessert">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/tacos.jpg" alt="Tacos">
+    <h3>Mexican Tacos</h3>
+    <p>₹300.00</p>
+    <div class="stars">★★★★☆</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Mexican Tacos">
+            <input type="hidden" name="price" value="300.00">
+            <input type="hidden" name="description" value="Tasty and spicy Mexican tacos">
+            <input type="hidden" name="name" value="Mexican Tacos">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<div class="food-card">
+    <img src="/images/pasta.jpg" alt="Pasta">
+    <h3>Italian Pasta</h3>
+    <p>₹320.00</p>
+    <div class="stars">★★★★★</div>
+    <div class="actions">
+        <p>Quantity: 1</p>
+        <form action="/add-to-cart" method="post">
+            <input type="hidden" name="itemName" value="Italian Pasta">
+            <input type="hidden" name="price" value="320.00">
+            <input type="hidden" name="description" value="Classic Italian pasta with a savory sauce">
+            <input type="hidden" name="name" value="Italian Pasta">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="inStock" value="true">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+
+</section>
+
+<script>
+    // Toggle Sidebar Functionality
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+    // Scroll carousel
+    function scrollCarousel(direction) {
+        const carousel = document.querySelector('.food-carousel');
+        const scrollAmount = 300; // Adjusted scroll amount for smoother scrolling
+        carousel.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+
+     // Update hidden quantity input dynamically for all forms
+    document.querySelectorAll('.food-card').forEach(card => {
+        const visibleQuantityInput = card.querySelector('.quantity'); // The visible quantity input
+        const form = card.querySelector('form'); // The form in the card
+        const hiddenQuantityInput = form.querySelector('input[name="quantity"]'); // The hidden input for quantity
+
+        // Update hidden input before form submission
+        form.addEventListener('submit', function () {
+            hiddenQuantityInput.value = visibleQuantityInput.value; // Synchronize values
+        });
+    });
+
+
+   
+
+    
+</script>
+
+
+
+</body>
+
+<body class="bg-light">
+    <div class="container my-4">
+        <h1 class="text-center">Restaurants Near You</h1>
+        <div class="row g-4 mt-4">
+            <div class="col-md-4" th:each="restaurant : ${restaurants}">
+                <div class="card shadow-sm">
+                    <div class="position-relative">
+                        <img th:src="@{${restaurant.imageUrl}}" class="card-img-top" alt="Restaurant Image">
+                        <span th:class="${restaurant.isOpen} ? 'badge bg-success position-absolute top-0 start-0' : 'badge bg-danger position-absolute top-0 start-0'" 
+                              th:text="${restaurant.isOpen} ? 'Open' : 'Closed'" 
+                              style="margin: 10px;"></span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${restaurant.name}"></h5>
+                        <p class="card-text" th:text="${restaurant.description}"></p>
+
+                        <!-- View Menu Button -->
+                      <a th:href="@{/menu/view}" class="btn btn-primary">View Menu</a>
+
+
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

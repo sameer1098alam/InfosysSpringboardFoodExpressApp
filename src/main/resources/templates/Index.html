@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FoodExpress</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            left: -50px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand" style="display: flex; align-items: center; color: #009963;">
+            <span style="font-size: 28px; margin-right: 10px; margin-bottom: 5px;">🍴</span>
+            <span>Food Express</span>
+        </div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#service">Service</a>
+            <a href="#pages">Pages</a>
+            <a href="#contact">Contact</a>
+            <div class="dropdown">
+                <button class="dropbtn">Login</button>
+                <div class="dropdown-content">
+                    <a href="/login">User Login</a>
+                    <a href="/admin-login">Admin Login</a>
+                    <a href="/restaurant-login">Restaurant Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Delicious Meals, Delivered Faster</h1>
+            <h3>Savor every bite without stepping out! Choose from a variety of 
+            mouth-watering dishes freshly prepared and delivered to your doorstep
+            with love.</h3>
+            <button onclick="location.href='/login'" class="order-button">Order Now</button>
+            <button onclick="location.href='/feedback'" class="order-button">feedback Now</button>
+        </div>
+    </div>
+    <div class="meal-images">
+        <h2 style="text-align:left; padding:30px">Most Popular Items</h2>
+        <div class="meal-container">
+            <div class="meal-card">
+                <img th:src="@{/images/breakfast.png}" alt="Breakfast" />
+                <h3>Breakfast</h3>
+                <p>Start your day right.</p>
+            </div>
+            <div class="meal-card">
+                <img th:src="@{/images/Lunch.png}" alt="Lunch" />
+                <h3>Lunch</h3>
+                <p>Midday meals made easy.</p>
+            </div>
+            <div class="meal-card">
+                <img th:src="@{/images/dinner.png}" alt="Dinner" />
+                <h3>Dinner</h3>
+                <p>Satisfy your evening cravings.</p>
+            </div>
+            <div class="meal-card">
+                <img th:src="@{/images/Desserts.png}" alt="Desserts" />
+                <h3>Desserts</h3>
+                <p>Sweet treats for every mood.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="why-choose-us">
+        <h2>Why Choose Us?</h2>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">🔔</div>
+                <div class="card-title">Quick Delivery</div>
+                <div class="card-text">Get your favorite meals delivered to your doorstep in record time, fresh and hot.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🍕</div>
+                <div class="card-title">Wide Variety</div>
+                <div class="card-text">Choose from an extensive menu of delicious cuisines tailored to your cravings.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">➡️</div>
+                <div class="card-title">Seamless Ordering</div>
+                <div class="card-text">Order in just a few taps with our user-friendly platform, anytime, anywhere.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">ℹ️</div>
+                <div class="card-title">24/7 Support</div>
+                <div class="card-text">Need help? Our dedicated team is always here to assist you around the clock.</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-column">
+            <h3 style="color:#009963">Company</h3>
+            <a href="#">About us</a>
+            <a href="#">How it Works</a>
+            <a href="#">Careers</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-column">
+            <h3 style="color:#009963">Customer Support</h3>
+            <a href="tel:+01234567890">+012 345 67890</a>
+            <a href="mailto:support@fooddelivery.com">support@fooddelivery.com</a>
+            <a href="#">FAQ</a>
+            <a href="#">Track your Order</a>
+        </div>
+        <div class="footer-column">
+            <h3 style="color:#009963">Popular Cuisines</h3>
+            <a href="#">Italian</a>
+            <a href="#">Chinese</a>
+            <a href="#">Indian</a>
+            <a href="#">Mexican</a>
+        </div>
+        <div class="footer-column footer-signup">
+            <h3 style="color:#009963">Stay Connected</h3>
+            <p>Sign up for our newsletter and get the latest offers and updates delivered to your inbox!</p>
+            <form>
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

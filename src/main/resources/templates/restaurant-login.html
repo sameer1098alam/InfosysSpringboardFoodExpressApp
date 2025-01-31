@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Login | FoodExpress</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Restaurant Login</h1>
+    <!-- Corrected the form action URL -->
+    <form action="/restaurant-authenticate" method="POST">
+        <label>Restaurant Email:</label>
+        <input type="email" name="email" required>
+        
+        <label>Restaurant Password:</label>
+        <input type="password" name="password" required>
+        
+        <div class="privacy-container">
+            <input type="checkbox" name="privacy-policy" required>
+            <label for="privacy-policy">I agree to the Privacy Policy</label>
+        </div>
+        
+        <button type="submit">Login</button>
+    </form>
+    
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    
+    <!-- Ensure the 'Sign Up' link points to the correct path -->
+    <p>Don't have an account? <a th:href="@{/restaurant-signup}">Sign Up</a></p>
+</div>
+
+</body>
+</html>

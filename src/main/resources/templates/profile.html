@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <h1>User Profile</h1>
+            <p>Update your details below</p>
+        </div>
+
+        <!-- Message or error -->
+        <div class="message">
+            <p th:text="${message}" class="success"></p>
+            <p th:text="${error}" class="error"></p>
+        </div>
+
+        <!-- Profile Update Form -->
+        <form action="#" th:action="@{/updateProfile}" method="POST" class="profile-form">
+            <input type="text" th:name="name" th:value="${user.name}" placeholder="Full Name" required>
+            <input type="email" th:name="email" th:value="${user.email}" placeholder="Email Address" required readonly>
+            <input type="password" th:name="password" placeholder="New Password (optional)">
+            <input type="text" th:name="contactInformation" th:value="${user.contactInformation}" placeholder="Contact Information">
+            <input type="text" th:name="deliveryAddress" th:value="${user.deliveryAddress}" placeholder="Delivery Address">
+            
+            <!-- Update Profile button -->
+            <input type="submit" value="Update Profile">
+        </form>
+
+        <!-- Deactivate Account Button -->
+        <form th:action="@{/deactivateAccount}" method="post">
+    <input type="hidden" name="email" th:value="${user.email}" />
+    <button type="submit" class="btn btn-danger">Deactivate Account</button>
+</form>
+    </div>
+</body>
+</html>
