@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Receipt</title>
+    <link rel="stylesheet" th:href="@{/css/order-success.css}">
+</head>
+<body>
+    <div class="receipt-container">
+        <h1>✅ Payment Successful!</h1>
+        <h2>Thank you for your order! 🎉</h2>
+        <p class="thank-you-msg">We appreciate your purchase. Your delicious order is being prepared! 😋</p>
+
+        <div class="receipt">
+            <h3>Order Receipt</h3>
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Payment ID</th>
+                    <th>Total Price</th>
+                    <th>Order Date</th>
+                </tr>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.paymentIntentId}"></td>
+                    <td>₹<span th:text="${order.totalPrice}"></span></td>
+                    <td th:text="${order.orderDate}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <p class="browse-msg">🍽️ Enjoy your meal! Don't forget to explore more delicious menu items.</p>
+       <a class="home-button" href="home.html">Browse More Menu Items 🍔</a>
+
+    </div>
+</body>
+</html>

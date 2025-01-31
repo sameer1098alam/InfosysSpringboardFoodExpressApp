@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.receipt-container {
+    background: white;
+    padding: 30px;
+    max-width: 700px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #28a745;
+}
+
+h2 {
+    color: #333;
+}
+
+.thank-you-msg {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.receipt {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Ensures even column widths */
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word; /* Allow text to break and wrap into new lines */
+}
+
+th {
+    background: #f4f4f4;
+    font-weight: bold;
+}
+
+th, td:nth-child(1) {
+    min-width: 120px; /* Set a minimum width for the first column */
+}
+
+th, td:nth-child(2) {
+    min-width: 120px; /* Set a minimum width for the second column */
+}
+
+th, td:nth-child(3) {
+    min-width: 120px; /* Set a minimum width for the third column */
+}
+
+.browse-msg {
+    font-size: 15px;
+    color: #444;
+    margin-top: 30px;
+}
+
+.home-button {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.home-button:hover {
+    background: #e68900;
+}
