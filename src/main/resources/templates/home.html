@@ -351,6 +351,35 @@ main {
     border-radius: 50%;
 }
 
+.order-button {
+    display: flex;
+    align-items: center;
+    background-color: #28a745; /* Green color */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.order-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.feedback-icon {
+    width: 30px; /* Adjusted size for the circular icon */
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 100%; /* Makes the icon circular */
+    object-fit: cover; /* Ensures the icon fits well inside the circle */
+}
+
+.order-button:focus {
+    outline: none;
+}
 
      
     </style>
@@ -363,6 +392,11 @@ main {
        
     </nav>
  <div class="header-icons">
+ 
+    <button onclick="location.href='/feedback'" class="order-button">
+    <img src="/images/feedback.png" alt="Feedback Icon" class="feedback-icon"> Feedback
+</button>
+    
     <div class="cart-icon" onclick="redirectToCart()">
         <img src="/images/cart.png" alt="Cart">
     </div>
@@ -372,6 +406,8 @@ main {
             <img src="/images/profile-icon.png" alt="Profile">
         </div>
     </div>
+    
+    
 </header>
 <script>
     function redirectToCart() {
@@ -385,6 +421,7 @@ main {
     <a href="#">Orders</a>
     <a href="#">Settings</a>
     <a href="#">Log Out</a>
+    
 </div>
 
 <section class="hero-section">
@@ -461,7 +498,7 @@ main {
             <input type="hidden" name="price" value="300.00">
             <input type="hidden" name="description" value="A delicious Italian pizza with fresh ingredients">
             <input type="hidden" name="name" value="Italian Pizza">
-            <input type="hidden" name="quantity" value="1">
+             <input type="number" name="quantity" value="1" min="1">
             <input type="hidden" name="inStock" value="true">
             <button type="submit">Add to Cart</button>
         </form>
