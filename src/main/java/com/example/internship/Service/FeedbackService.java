@@ -21,4 +21,17 @@ public class FeedbackService {
     public List<Feedback> getAllFeedback() {
         return feedbackRepository.findAll();
     }
+
+    public Double getAverageRating() {
+        List<Feedback> feedbacks = feedbackRepository.findAll();
+        if (feedbacks.isEmpty()) {
+            return 0.0;
+        }
+        double totalRating = 0;
+        for (Feedback feedback : feedbacks) {
+            totalRating += feedback.getRating();
+        }
+        return totalRating / feedbacks.size();
+    }
+    
 }

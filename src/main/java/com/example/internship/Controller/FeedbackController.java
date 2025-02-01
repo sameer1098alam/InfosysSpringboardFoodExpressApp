@@ -32,4 +32,15 @@ public class FeedbackController {
     public void deleteFeedback(@PathVariable Long id) {
         feedbackRepository.deleteById(id);
     }
+// Get average rating
+@GetMapping("/average-rating")
+public Double getAverageRating() {
+    List<Feedback> feedbacks = feedbackRepository.findAll();
+    return feedbacks.stream()
+            .mapToDouble(Feedback::getRating)
+            .average()
+            .orElse(0.0);
+}
+    
+
 }

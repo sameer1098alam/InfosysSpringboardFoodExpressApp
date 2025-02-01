@@ -29,11 +29,14 @@ public class HomeController {
     public String signupPage() {
         return "signup";  // Signup page view
     }
+    @GetMapping("/report")
+    public String report() {
+        return "report";  // Main homepage view
+    }
     @GetMapping("/feedback")
     public String feedback() {
         return "feedback";  // Main homepage view
     }
-   
 
    
 
