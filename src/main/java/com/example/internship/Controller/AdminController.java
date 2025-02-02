@@ -1,6 +1,11 @@
 package com.example.internship.Controller;
 
+import com.example.internship.Model.Menu;
 import com.example.internship.Service.AdminService;
+import com.example.internship.Service.MenuService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +16,8 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-
+    @Autowired
+    private MenuService menuService;
     // Admin login page
     @GetMapping("/admin-login")
     public String adminLoginPage() {
@@ -40,4 +46,16 @@ public class AdminController {
     public String adminDashboard() {
         return "admin-dashboard";  // This page will be displayed after successful login
     }
+    @GetMapping("/report")
+    public String report() {
+        return "report";  // Main homepage view
+    }
+    @GetMapping("/view-menu")
+    public String showMenuPage(Model model) {
+    	 
+    List<Menu> menuItems = menuService.getAllMenuItems();
+    System.out.println("Menu Items Retrieved: " + menuItems); // Debugging
+     model.addAttribute("menuItems", menuItems);
+     return "view-menu";
+    	    }
 }

@@ -1,7 +1,7 @@
 package com.example.internship.Model;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;  // Use LocalDate instead of Date
 
 @Entity
 @Table(name = "orders") // Renamed table to "orders" to avoid reserved keyword issue
@@ -12,7 +12,9 @@ public class Orders {
 
     private String paymentIntentId; // Stripe Payment ID
     private double totalPrice;
-    private Date orderDate;
+
+    @Column(name = "order_date") // Adjust column name if necessary
+    private LocalDate orderDate; // Use LocalDate instead of Date
 
     @Lob
     private String orderDetails; // JSON String to store cart items
@@ -22,7 +24,7 @@ public class Orders {
     public Orders(String paymentIntentId, double totalPrice, String orderDetails) {
         this.paymentIntentId = paymentIntentId;
         this.totalPrice = totalPrice;
-        this.orderDate = new Date();
+        this.orderDate = LocalDate.now(); // Set the current date using LocalDate
         this.orderDetails = orderDetails;
     }
 
@@ -47,8 +49,12 @@ public class Orders {
         this.totalPrice = totalPrice;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public String getOrderDetails() {

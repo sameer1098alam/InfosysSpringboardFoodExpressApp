@@ -64,5 +64,9 @@ public class Menu {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    
+    // Override toString method to display meaningful information
+    @Override
+    public String toString() {
+        return "Menu{id=" + id + ", name='" + name + "', description='" + description + "', price=" + price + ", inStock=" + inStock + ", imageUrl='" + imageUrl + "'}";
+    }
 }

@@ -1,7 +1,12 @@
 package com.example.internship.Controller;
 
+import com.example.internship.Model.Menu;
 import com.example.internship.Model.User;
 import com.example.internship.Service.AuthService;
+import com.example.internship.Service.MenuService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -14,7 +19,7 @@ public class HomeController {
 
     @Autowired
     private AuthService authService;
-
+    
     @GetMapping("/")
     public String home() {
         return "index";  // Main homepage view
@@ -29,16 +34,14 @@ public class HomeController {
     public String signupPage() {
         return "signup";  // Signup page view
     }
-    @GetMapping("/report")
-    public String report() {
-        return "report";  // Main homepage view
-    }
+    
     @GetMapping("/feedback")
     public String feedback() {
         return "feedback";  // Main homepage view
     }
 
-   
+    
+       
 
     @GetMapping("/profile")
     public String viewProfile(HttpSession session, Model model) {

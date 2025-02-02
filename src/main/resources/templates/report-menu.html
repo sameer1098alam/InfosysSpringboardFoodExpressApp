@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .menu-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .menu-info {
+            flex-grow: 1;
+        }
+
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <h2>Menu</h2>
+
+    <div th:if="${#lists.isEmpty(menuItems)}">
+        <p>No menu items available.</p>
+        <a th:href="@{/}" class="btn btn-primary">Go to Home</a>
+    </div>
+
+    <div th:each="item : ${menuItems}" class="menu-item">
+        <img th:src="@{${item.imageUrl}}" alt="Menu Image">
+        <div class="menu-info">
+            <h4 th:text="${item.name}"></h4>
+            <p th:text="${item.description}"></p>
+            <p><strong>₹</strong><span th:text="${item.price}"></span></p>
+
+            <!-- Display In Stock or Out of Stock -->
+            <p>
+                <span th:if="${item.inStock}">In Stock</span>
+                <span th:unless="${item.inStock}">Out of Stock</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

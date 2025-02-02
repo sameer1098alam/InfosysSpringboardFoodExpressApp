@@ -403,12 +403,9 @@ main {
 
 
         <div class="profile-icon" onclick="toggleSidebar()">
-            <img src="/images/profile-icon.png" alt="Profile">
+            <img src="/images/profile-icon.jpg" alt="Profile">
         </div>
     </div>
-    <div>
-    </div>
-    
     
     
 </header>
@@ -495,13 +492,14 @@ main {
     <p>₹300.00</p>
     <div class="stars">★★★★★</div>
     <div class="actions">
-        <p>Quantity: 1</p>
+       <p>Quantity: 1</p>
+       
         <form action="/add-to-cart" method="post">
             <input type="hidden" name="itemName" value="Italian Pizza">
             <input type="hidden" name="price" value="300.00">
             <input type="hidden" name="description" value="A delicious Italian pizza with fresh ingredients">
             <input type="hidden" name="name" value="Italian Pizza">
-             <input type="number" name="quantity" value="1" min="1">
+            <input type="hidden" name="quantity" value="1">
             <input type="hidden" name="inStock" value="true">
             <button type="submit">Add to Cart</button>
         </form>
