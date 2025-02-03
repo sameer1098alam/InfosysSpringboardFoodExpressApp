@@ -1,21 +1,22 @@
 package com.example.internship.Model;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "orders") // Renamed table to "orders" to avoid reserved keyword issue
+@Table(name = "orders") // Renamed table to avoid conflicts with SQL reserved keywords
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String paymentIntentId; // Stripe Payment ID
+    private String paymentIntentId;
     private double totalPrice;
     private Date orderDate;
 
     @Lob
-    private String orderDetails; // JSON String to store cart items
+    private String orderDetails;  // Store cart items as JSON string
 
     public Orders() {}
 
