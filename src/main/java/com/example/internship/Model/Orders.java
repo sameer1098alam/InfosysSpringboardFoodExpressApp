@@ -1,8 +1,12 @@
 package com.example.internship.Model;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 
 import java.util.Date;
+=======
+import java.time.LocalDate;  // Use LocalDate instead of Date
+>>>>>>> 8f054d13173b64348e4cc7a3582240026e26a8a0
 
 @Entity
 @Table(name = "orders") // Renamed table to avoid conflicts with SQL reserved keywords
@@ -13,7 +17,9 @@ public class Orders {
 
     private String paymentIntentId;
     private double totalPrice;
-    private Date orderDate;
+
+    @Column(name = "order_date") // Adjust column name if necessary
+    private LocalDate orderDate; // Use LocalDate instead of Date
 
     @Lob
     private String orderDetails;  // Store cart items as JSON string
@@ -23,7 +29,7 @@ public class Orders {
     public Orders(String paymentIntentId, double totalPrice, String orderDetails) {
         this.paymentIntentId = paymentIntentId;
         this.totalPrice = totalPrice;
-        this.orderDate = new Date();
+        this.orderDate = LocalDate.now(); // Set the current date using LocalDate
         this.orderDetails = orderDetails;
     }
 
@@ -48,8 +54,12 @@ public class Orders {
         this.totalPrice = totalPrice;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public String getOrderDetails() {

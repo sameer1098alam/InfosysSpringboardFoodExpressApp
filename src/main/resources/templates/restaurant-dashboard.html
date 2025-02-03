@@ -3,34 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <title>Restaurant Dashboard</title>
-    <link rel="stylesheet" th:href="@{/CSS/menu.css}">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('./res.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            color: #2E7D32;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #4CAF50;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        #menu-management button {
+            display: block;
+            margin-top: 1rem;
+            margin-left: 1rem; /* Aligns nicely under the heading */
+        }
+
+        button {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #66BB6A, #4CAF50);
+            transform: scale(1.05);
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Restaurant Dashboard</h1>
         <nav>
-            <ul>
-                <li><a href="#orders">Orders</a></li>
-                <li><a href="#analytics">Analytics</a></li>
-            </ul>
+            <a href="#orders">Orders</a>
+           
         </nav>
     </header>
+
     <main>
         <section id="menu-management">
             <h2>Menu Management</h2>
             <button onclick="window.location.href='/menu'">Manage Menu</button>
         </section>
 
-        <!-- Placeholder for other sections like Orders and Analytics -->
         <section id="orders">
             <h2>Orders</h2>
             <p>Order management functionality will go here.</p>
         </section>
-        <section id="analytics">
-            <h2>Analytics</h2>
-            <p>Analytics functionality will go here.</p>
-        </section>
+
+       
     </main>
-    <script src="js/dashboard.js"></script>
 </body>
 </html>
