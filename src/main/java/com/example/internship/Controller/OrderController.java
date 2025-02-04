@@ -1,6 +1,19 @@
 package com.example.internship.Controller;
 
 import com.example.internship.Repository.OrderRepository;
+<<<<<<< HEAD
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.sql.Timestamp;
+import java.util.List;
+=======
+>>>>>>> 8f054d13173b64348e4cc7a3582240026e26a8a0
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
+
     private final OrderRepository orderRepository;
 
     public OrderController(OrderRepository orderRepository) {
@@ -70,5 +84,27 @@ public class OrderController {
             // Return 0 in case of an error
             return 0;
         }
+    }
+
+    // Get orders by date
+    @GetMapping("/api/orders/by-date")
+    @ResponseBody
+    public ResponseEntity<List<Orders>> getOrdersByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Timestamp date) {
+        // Calculate next day
+        Timestamp nextDate = new Timestamp(date.getTime() + 86400000); // 24 hours in milliseconds
+        List<Orders> orders = orderRepository.findOrdersByDate(date, nextDate);
+
+        if (orders.isEmpty()) {
+            return ResponseEntity.noContent().build();  // Return 204 if no orders are found
+        }
+        return ResponseEntity.ok(orders);  // Return 200 with orders
+    }
+
+    // Get order count by date
+    @GetMapping("/api/orders/count-by-date")
+    @ResponseBody
+    public Long getOrderCountByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Timestamp date) {
+        Timestamp nextDate = new Timestamp(date.getTime() + 86400000); // Calculate the next date
+        return orderRepository.countOrdersByDate(date, nextDate);
     }
 }

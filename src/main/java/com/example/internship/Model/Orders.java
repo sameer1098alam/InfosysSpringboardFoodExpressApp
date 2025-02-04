@@ -1,23 +1,28 @@
 package com.example.internship.Model;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
+
+import java.util.Date;
+=======
 import java.time.LocalDate;  // Use LocalDate instead of Date
+>>>>>>> 8f054d13173b64348e4cc7a3582240026e26a8a0
 
 @Entity
-@Table(name = "orders") // Renamed table to "orders" to avoid reserved keyword issue
+@Table(name = "orders") // Renamed table to avoid conflicts with SQL reserved keywords
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String paymentIntentId; // Stripe Payment ID
+    private String paymentIntentId;
     private double totalPrice;
 
     @Column(name = "order_date") // Adjust column name if necessary
     private LocalDate orderDate; // Use LocalDate instead of Date
 
     @Lob
-    private String orderDetails; // JSON String to store cart items
+    private String orderDetails;  // Store cart items as JSON string
 
     public Orders() {}
 
