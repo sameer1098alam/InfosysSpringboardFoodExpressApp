@@ -56,6 +56,6 @@ public class AdminController {
     List<Menu> menuItems = menuService.getAllMenuItems();
     System.out.println("Menu Items Retrieved: " + menuItems); // Debugging
      model.addAttribute("menuItems", menuItems);
-     return "view-menu";
+     return "report-menu";
     	    }
 }

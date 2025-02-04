@@ -55,9 +55,14 @@
             <h4 th:text="${item.name}"></h4>
             <p th:text="${item.description}"></p>
             <p><strong>₹</strong><span th:text="${item.price}"></span></p>
-            
         </div>
-        
+        <form action="/add-to-cart" method="post">
+    <input type="hidden" name="name" th:value="${item.name}">
+    <input type="hidden" name="price" th:value="${item.price}">
+    <input type="hidden" name="description" th:value="${item.description}">
+    <input type="hidden" name="inStock" th:value="${item.inStock}">
+    <input type="number" name="quantity" value="1" min="1"> <!-- Quantity input -->
+    <button type="submit" class="add-to-cart">Add to Cart</button>
 </form>
 
     </div>

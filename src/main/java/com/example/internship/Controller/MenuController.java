@@ -41,32 +41,31 @@ public class MenuController {
     @PostMapping("/save-menu")
     public String saveMenu(@RequestParam("name") String name,
                            @RequestParam("description") String description,
-                           @RequestParam("price") double price, // Added price parameter
-                           @RequestParam("inStock") boolean inStock, // Added inStock parameter
+                           @RequestParam("price") double price,
+                           @RequestParam(value = "inStock", required = false, defaultValue = "false") Boolean inStock, // Handle unchecked case
                            @RequestParam("imageFile") MultipartFile imageFile) {
-
         try {
             Path uploadPath = Paths.get(UPLOAD_DIR);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
-
+    
             String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(imageFile.getInputStream(), filePath);
-
+    
             Menu menu = new Menu();
             menu.setName(name);
             menu.setDescription(description);
-            menu.setPrice(price); // Set the price
-            menu.setInStock(inStock); // Set the inStock status
-            menu.setImageUrl("/menu-uploads/" + fileName);  // Relative path for serving via static mapping
+            menu.setPrice(price);
+            menu.setInStock(inStock != null && inStock); // Ensures it's false if null
+            menu.setImageUrl("/menu-uploads/" + fileName);  
+    
             menuService.addOrUpdateMenuItem(menu);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+    
         return "redirect:/menu";
     }
 
@@ -83,14 +82,14 @@ public class MenuController {
                                  @RequestParam("name") String name,
                                  @RequestParam("description") String description,
                                  @RequestParam("price") double price,  // Added price field
-                                 @RequestParam("inStock") boolean inStock,  // Added inStock field
+                                 @RequestParam(value = "inStock", required = false, defaultValue = "false") Boolean inStock, // 
                                  @RequestParam("imageFile") MultipartFile imageFile) {
         try {
             Menu menu = menuService.getMenuItemById(id);
             menu.setName(name);
             menu.setDescription(description);
             menu.setPrice(price);  // Set the price
-            menu.setInStock(inStock);  // Set the inStock status
+            menu.setInStock(inStock != null && inStock);  // Set the inStock status
 
             // Handle image update if a new file is uploaded
             if (!imageFile.isEmpty()) {
