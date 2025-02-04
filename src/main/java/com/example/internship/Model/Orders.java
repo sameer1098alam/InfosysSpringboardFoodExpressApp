@@ -1,12 +1,7 @@
 package com.example.internship.Model;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
-
-import java.util.Date;
-=======
 import java.time.LocalDate;  // Use LocalDate instead of Date
->>>>>>> 8f054d13173b64348e4cc7a3582240026e26a8a0
 
 @Entity
 @Table(name = "orders") // Renamed table to avoid conflicts with SQL reserved keywords
