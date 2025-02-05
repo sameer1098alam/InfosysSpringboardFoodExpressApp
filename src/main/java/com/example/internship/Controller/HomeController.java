@@ -39,6 +39,10 @@ public class HomeController {
     public String feedback() {
         return "feedback";  // Main homepage view
     }
+    @GetMapping("/about")
+    public String about() {
+        return "about";  // Main homepage view
+    }
 
     
        
