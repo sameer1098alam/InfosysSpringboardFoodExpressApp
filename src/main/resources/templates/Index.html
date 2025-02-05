@@ -2,66 +2,379 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodExpress</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .dropdown {
+        :root {
+            --primary-color: #009963;
+            --secondary-color: #ff6b6b;
+            --dark-color: #2d3436;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Navigation */
+        .navbar {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            transition: transform 0.3s ease;
+        }
+
+        .brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--dark-color) !important;
+            margin: 0 1.2rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            background: rgba(0, 153, 99, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section Enhancements */
+        .hero-section {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
             position: relative;
-            display: inline-block;
+            overflow: hidden;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        .hero-content {
+            position: relative;
             z-index: 1;
-            left: -50px;
+            max-width: 800px;
+            padding: 2rem;
         }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .order-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 35px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-button::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            transition: all 0.3s ease;
+        }
+
+        .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            padding-right: 4rem;
+        }
+
+        .order-button:hover::after {
+            right: 20px;
+        }
+
+        /* Meal Cards Enhancements */
+        .meal-images {
+            padding: 4rem 0;
+            background: var(--light-color);
+        }
+
+        .meal-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem;
+        }
+
+        .meal-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+            position: relative;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .meal-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .meal-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .meal-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .meal-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .meal-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Why Choose Us Enhancements */
+        .why-choose-us {
+            padding: 6rem 0;
+            background: linear-gradient(45deg, var(--light-color) 50%, white 50%);
+            position: relative;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            padding: 2rem;
+        }
+
+        .card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        /* Footer Enhancements */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .footer-column {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        .footer h3 {
+            color: var(--primary-color) !important;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .footer a {
+            color: #ddd !important;
             text-decoration: none;
-            display: block;
+            margin: 0.8rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
         }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
+        .footer a:hover {
+            color: var(--primary-color) !important;
+            padding-left: 10px;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
+        .footer a::before {
+            content: '•';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary-color);
         }
 
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+        .footer a:hover::before {
+            left: -10px;
+            opacity: 1;
+        }
+
+        .footer-signup input {
+            border-radius: 25px;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .footer-signup button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-signup button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .navbar-nav {
+                margin-top: 1rem;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 12px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-link {
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Animation Enhancements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="brand" style="display: flex; align-items: center; color: #009963;">
-            <span style="font-size: 28px; margin-right: 10px; margin-bottom: 5px;">🍴</span>
-            <span>Food Express</span>
-        </div>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <a href="/about">About</a>
-            <a href="#service">Service</a>
-            <a href="#pages">Pages</a>
-            <a href="#contact">Contact</a>
-            <div class="dropdown">
-                <button class="dropbtn">Login</button>
-                <div class="dropdown-content">
-                    <a href="/login">User Login</a>
-                    <a href="/admin-login">Admin Login</a>
-                    <a href="/restaurant-login">Restaurant Login</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand brand" th:href="@{/}">
+                <span class="floating-element">🍴</span>Food Express 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                    <a class="nav-link" href="#service">Service</a>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-2"></i>Login
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/login}"><i class="fas fa-user me-2"></i>User Login</a></li>
+                            <li><a class="dropdown-item" th:href="@{/admin-login}"><i class="fas fa-lock me-2"></i>Admin Login</a></li>
+                            <li><a class="dropdown-item" th:href="@{/restaurant-login}"><i class="fas fa-utensils me-2"></i>Restaurant Login</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
+
+
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Rest of your content remains same with updated classes -->
 
 
     <div class="hero-section">
@@ -157,5 +470,43 @@
             </form>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced Scroll Animations
+        window.addEventListener('scroll', function() {
+            const animateElements = document.querySelectorAll('.meal-card, .card');
+            animateElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if(elementTop < window.innerHeight * 0.75) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Smooth Scroll Enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Hover effect for all cards
+        document.querySelectorAll('.card, .meal-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
