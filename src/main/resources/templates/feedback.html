@@ -5,131 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Management</title>
     <style>
-   
+    :root {
+        --primary: #2563eb;
+        --secondary: #1e40af;
+        --accent: #f59e0b;
+        --light: #f8fafc;
+        --dark: #1e293b;
+    }
+
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 20px;
-        color: #333;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        margin: 0;
+        color: var(--dark);
+        line-height: 1.6;
     }
 
     h1 {
         text-align: center;
-        color: #007BFF;
-        font-size: 2.5em;
-        margin-bottom: 20px;
+        color: var(--primary);
+        font-size: 2.8rem;
+        margin: 2rem 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     .container {
-        max-width: 900px;
+        max-width: 1200px;
         margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        align-items: start;
     }
 
     .feedback-section, .display-section {
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        flex: 1 1 48%;
-        transition: transform 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .feedback-section:hover, .display-section:hover {
         transform: translateY(-5px);
     }
 
+    h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 2px;
+    }
+
     input, textarea {
         width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1em;
-        transition: border-color 0.3s ease;
+        padding: 1rem;
+        margin: 0.8rem 0;
+        border: 2px solid #e2e8f0;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
     }
 
     input:focus, textarea:focus {
-        border-color: #007BFF;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         outline: none;
     }
 
     button {
-        background-color: #007BFF;
+        background: var(--primary);
         color: white;
-        padding: 12px 20px;
+        padding: 1rem 2rem;
         border: none;
-        border-radius: 5px;
+        border-radius: 0.5rem;
         cursor: pointer;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        letter-spacing: 0.5px;
     }
 
     button:hover {
-        background-color: #0056b3;
+        background: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    #feedbackList {
+        max-height: 600px;
+        overflow-y: auto;
+        padding-right: 1rem;
     }
 
     .feedback-item {
-        background-color: #fff;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid var(--primary);
         transition: transform 0.3s ease;
     }
 
     .feedback-item:hover {
-        transform: scale(1.05);
+        transform: translateX(5px);
     }
 
     .feedback-item h3 {
-        font-size: 1.3em;
-        color: #007BFF;
-        margin-bottom: 10px;
+        color: var(--secondary);
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
     }
 
     .feedback-item p {
-        font-size: 1.1em;
-        color: #555;
-        margin-bottom: 5px;
+        color: #64748b;
+        margin: 0.5rem 0;
     }
 
     .rating {
-        font-weight: bold;
-        color: #f39c12;
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 0.9rem;
     }
 
-    @media screen and (max-width: 768px) {
+    @media (max-width: 768px) {
         .container {
-            flex-direction: column;
-            gap: 10px;
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 1.5rem 0;
         }
 
         .feedback-section, .display-section {
-            flex: 1 1 100%;
+            padding: 1.5rem;
+        }
+
+        #feedbackList {
+            max-height: 400px;
         }
     }
-</style>
 
-    </style>
+    @media (max-width: 480px) {
+        input, textarea, button {
+            font-size: 0.9rem;
+        }
+
+        .feedback-item {
+            padding: 1rem;
+        }
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(241, 245, 249, 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+</style>
 </head>
 <body>
     <h1>Feedback Management</h1>
     <div class="container">
-        <!-- Feedback Form Section -->
         <div class="feedback-section">
             <h2>Submit Feedback</h2>
             <form id="feedbackForm">
                 <input type="text" id="name" placeholder="Your Name" required>
-                <textarea id="review" placeholder="Your Review" rows="4" required></textarea>
+                <textarea id="review" placeholder="Your Review" rows="5" required></textarea>
                 <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5" required>
                 <button type="submit">Submit Feedback</button>
             </form>
         </div>
 
-        <!-- Feedback Display Section -->
         <div class="display-section">
             <h2>Feedback List</h2>
             <div id="feedbackList"></div>
